@@ -2,8 +2,10 @@ package harveynorman.test.steps;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import cucumber.api.java.Before;
@@ -31,28 +33,28 @@ public class LoginSteps {
 
 	@Given("^User clicks on the login button on homepage$")
 	public void user_clicks_on_the_login_button_on_homepage() throws Throwable {
-		
-		// Dynamic x-path  or CSS locatior - //a[contains(text(), 'Sign In')]
 		driver.findElement(By.xpath("//a[contains(text(), 'Sign In')]")).click();
 	}
 
 	@Given("^User enters a valid username$")
 	public void user_enters_a_valid_username() throws Throwable {
-		System.out.println("User enters a valid username");
+		driver.findElement(By.xpath("//*[@id=\"EmailAddress\"]")).sendKeys("rubatanisa@gmail.com");
 	}
 
 	@Given("^User enters a valid password$")
 	public void user_enters_a_valid_password() throws Throwable {
-		System.out.println("User enters a valid password");
+		driver.findElement(By.xpath("//*[@id=\"Password\"]")).sendKeys("Dhaka521453");
 	}
 
-	@When("^User clicks on the login button$")
-	public void user_clicks_on_the_login_button() throws Throwable {
-		System.out.println("User clicks on the login button");
+	@When("^User clicks on the signin button$")
+	public void user_clicks_on_the_signin_button() throws Throwable {
+		driver.findElement(By.xpath("/html/body/div[1]/section[1]/div/div/div[1]/form/button")).click();
 	}
 
 	@Then("^User should be taken to the successful login page$")
-	public void user_should_be_taken_to_the_successful_login_page() throws Throwable {
-		System.out.println("User should be taken to the successful login page");
+	public void user_should_be_taken_to_the_successful_login_page() throws Throwable {	
+		Thread.sleep(3000);
+		WebElement welcome = driver.findElement(By.xpath("/html/body/div[1]/div/section[2]/div/div/div[3]/h4"));
+		Assert.assertEquals(true, welcome.isDisplayed());
 	}
 }

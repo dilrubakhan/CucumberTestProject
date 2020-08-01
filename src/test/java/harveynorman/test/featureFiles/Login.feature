@@ -6,5 +6,5 @@ Scenario: Login into account with correct credentials
 	And User clicks on the login button on homepage
 	And User enters a valid username 
 	And User enters a valid password 
-	When User clicks on the login button  
+	When User clicks on the signin button  
 	Then User should be taken to the successful login page
